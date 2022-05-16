@@ -1,14 +1,28 @@
 // Displaying Elements
 var main = document.getElementsByTagName('body');
 var content = document.getElementById('main-content');
-var title = document.getElementById('number');
+var numberval = document.getElementById('number');
 var hex = document.getElementById('hex');
 var rgb = document.getElementById('rgb');
 var hsl = document.getElementById('hsl');
 var cmyk = document.getElementById('cmyk');
 var icon = document.getElementById('github');
+var clipboard = document.getElementById('clipboard');
+var title = document.getElementById('title');
 
 changeBgColor();
+
+function copyToClipboard(e) {
+	if (!e) var e = window.event;
+	e.cancelBubble = true;
+	if (e.stopPropagation) e.stopPropagation();
+	var hexvalue = document.getElementById('hex').innerHTML.slice(6);
+	console.log('linear-gradient(35deg, ' + hexvalue + ')');
+	navigator.clipboard.writeText('linear-gradient(35deg, ' + hexvalue + ');').then(() => {
+		//clipboard.classList.replace('fa-clipboard', 'fa-clipboard-check');
+		title.innerHTML = 'COPIED   <i class="fas fa-clipboard-check" id="clipboard" aria-hidden="true"></i>';
+	});
+}
 
 function genRandom() {
 	var randomNum = (Math.floor(Math.random() * 156) + 100).toString(16).padStart(2, 0);
@@ -23,23 +37,26 @@ function changeBgColor() {
 	// var hexcode1 = first[0] + first[1] + first[2];
 	// var hexcode2 = second[0] + second[1] + second[2];
 
+	//clipboard.classList.replace('fa-clipboard-check', 'fa-clipboard');
+	title.innerHTML = 'PASTEL   <i class="fas fa-clipboard" id="clipboard" aria-hidden="true"></i>';
+
 	var hexX = genRandom();
-    var hexY = genRandom();
-    var hexZ = genRandom();
+	var hexY = genRandom();
+	var hexZ = genRandom();
 
 	var hexX2 = genRandom();
-    var hexY2 = genRandom();
-    var hexZ2 = genRandom();
+	var hexY2 = genRandom();
+	var hexZ2 = genRandom();
 
-    var hexcode1 = hexX + hexY + hexZ;
+	var hexcode1 = hexX + hexY + hexZ;
 	var hexcode2 = hexX2 + hexY2 + hexZ2;
 
-	title.innerHTML = '#' + number() + number() + number() + number() + number();
+	numberval.innerHTML = '#' + number() + number() + number() + number() + number();
 
-	hex.innerHTML = "HEX : #" + hexcode1.toUpperCase() + ", " + hexcode2.toUpperCase();
+	hex.innerHTML = 'HEX : #' + hexcode1.toUpperCase() + ', #' + hexcode2.toUpperCase();
 
 	// Result Displaying
-	document.body.style.background = 'linear-gradient(35deg, #' + hexcode1 + ", #" + hexcode2 + ')';
+	document.body.style.background = 'linear-gradient(35deg, #' + hexcode1 + ', #' + hexcode2 + ')';
 
 	exchangeRgb(hexX, hexY, hexZ, hexX2, hexY2, hexZ2);
 }
@@ -161,7 +178,21 @@ function exchangeHsl(r, g, b, r2, g2, b2) {
 	}
 
 	// Result Displaying
-	hsl.innerHTML = 'HSL : (' + hue + '°, ' + saturation + '%, ' + lightness + '%)' + ', (' + hue2 + '°, ' + saturation2 + '%, ' + lightness2 + '%)';
+	hsl.innerHTML =
+		'HSL : (' +
+		hue +
+		'°, ' +
+		saturation +
+		'%, ' +
+		lightness +
+		'%)' +
+		', (' +
+		hue2 +
+		'°, ' +
+		saturation2 +
+		'%, ' +
+		lightness2 +
+		'%)';
 
 	changeFontColor(lightness);
 }
@@ -191,7 +222,25 @@ function exchangeCmyk(r, g, b, r2, g2, b2) {
 	K2 = Math.round(K2 * 100);
 
 	// Result Displaying
-	cmyk.innerHTML = 'CMYK : (' + C + '%, ' + M + '%, ' + Y + '%, ' + K + '%)' + ', (' + C2 + '%, ' + M2 + '%, ' + Y2 + '%, ' + K2 + '%)';
+	cmyk.innerHTML =
+		'CMYK : (' +
+		C +
+		'%, ' +
+		M +
+		'%, ' +
+		Y +
+		'%, ' +
+		K +
+		'%)' +
+		', (' +
+		C2 +
+		'%, ' +
+		M2 +
+		'%, ' +
+		Y2 +
+		'%, ' +
+		K2 +
+		'%)';
 }
 
 // Change The Font Color Base on The Nightness of The Background

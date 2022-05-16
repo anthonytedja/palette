@@ -21,8 +21,8 @@
 
 <body onclick="changeBgColor()" style="background: linear-gradient(35deg, #CCFFFF, #FFCCCC);transition: all 1s ease !important;">
     <section class="full" style="min-height: 100vh;align-items: center;display: flex;padding: 1em;">
-        <div id="main-content" class="main-content">
-            <h5 data-aos="fade-up" data-aos-once="true" class="hex-value" style="margin-bottom: 1em;opacity: 0.50;">PASTEL</h5>
+        <div id="main-content" class="main-content noselect">
+            <h5 data-aos="fade-up" data-aos-once="true" id="title" class="hex-value" style="margin-bottom: 1em;opacity: 0.50;" onclick="copyToClipboard()">PASTEL&nbsp; &nbsp;<i class="fas fa-clipboard" id="clipboard"></i></h5>
             <h1 data-aos="fade-up" data-aos-delay="50" data-aos-once="true" id="number" class="hex-value" style="margin: 0.5em 0em;">#</h1>
             <div class="main-content-colorcode">
                 <h5 data-aos="fade" data-aos-delay="150" data-aos-once="true" id="hex"></h5>
